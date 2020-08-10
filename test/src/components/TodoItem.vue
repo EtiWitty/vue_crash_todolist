@@ -5,6 +5,9 @@
 		<p>
 			<input type="checkbox" v-on:change="markComplete">
 			{{todo.title}}
+			<!-- we need to go upward and traverse up to where data ia where array is
+			we need to go up to todos and to app - the way to do this, is to emit an event -->
+			<button @click="$emit('del-todo', todo.id)" class="del">x</button>
 		</p>
 	</div>
 </template>
