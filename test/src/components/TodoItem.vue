@@ -1,12 +1,16 @@
 <template>
-	<div>
-		<p>Todo Item</p>
+ <!-- we want to use text decoration of line-through whenever a task is completed
+ so we bind a class based on the condition of todo.completed === true -->
+	<div class="todo-item" v-bind:class="{'is-complete':todo.completed}">
+		<p>{{todo.title}}</p>
 	</div>
 </template>
 
 <script>
 export default {
-	name:"TodoItem"
+	name:"TodoItem",
+	// we accept props from its parent here
+	props: ["todo"]
 }
 </script>
 
@@ -26,7 +30,7 @@ export default {
 	background: #ff0000;
 	color: #fff;
 	border: none;
-	padiing: 5px 9px;
+	padding: 5px 9px;
 	border-radius: 50%;
 	cursor: pointer;
 	float: right;
