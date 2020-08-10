@@ -3,13 +3,13 @@
 		<!-- like "delete", we have to move upward to app.vue to access to the array of data in it -->
 		<form @submit="addTodo">
 			<input type="text" v-model="title" name="title"  placeholder="Add Todo...">
-			<input type="submit" value="Submit" class="btn">
+			<input type="submit" value="submit" class="btn">
 		</form>
 	</div>
 </template>
 
 <script>
-import uuid from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 export default {
 	name: "AddTodo",
@@ -19,15 +19,17 @@ export default {
 		}
 	},
 	methods: {
-		addTodo() {
+		addTodo(e) {
+			e.preventDefault();
 			// construct our todo item object
 			const newTodo = {
-				id: uuid.v4(),
+				id: uuidv4(),
 				title: this.title,
 				completed: false
 			}
-			// sent up to parents by emitting
+			// send up to parents by emitting
 			this.$emit('add-todo', newTodo);
+			this.title = '';
 		}
 	}
 }

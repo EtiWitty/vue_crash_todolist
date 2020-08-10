@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <Header />
-    <AddTodo />
+    <!-- catch the emit coming from add todo components -->
+    <AddTodo v-on:add-todo="addTodo" />
     <Todos v-bind:todos="todos" v-on:del-todo="deleteTodo" />
   </div>
 </template>
@@ -42,6 +43,9 @@ export default {
   methods: {
     deleteTodo(id) {
       this.todos = this.todos.filter(todo => todo.id !== id)
+    },
+    addTodo(newTodo) {
+      this.todos = [...this.todos, newTodo];
     }
   }
 }
