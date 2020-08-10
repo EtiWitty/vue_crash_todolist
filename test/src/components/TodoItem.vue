@@ -2,7 +2,10 @@
  <!-- we want to use text decoration of line-through whenever a task is completed
  so we bind a class based on the condition of todo.completed === true -->
 	<div class="todo-item" v-bind:class="{'is-complete':todo.completed}">
-		<p>{{todo.title}}</p>
+		<p>
+			<input type="checkbox" v-on:change="markComplete">
+			{{todo.title}}
+		</p>
 	</div>
 </template>
 
@@ -10,7 +13,13 @@
 export default {
 	name:"TodoItem",
 	// we accept props from its parent here
-	props: ["todo"]
+	props: ["todo"],
+	methods: {
+		//toggle between true and false values
+		markComplete() {
+			this.todo.completed = !this.todo.completed
+		}
+	}
 }
 </script>
 
@@ -23,7 +32,7 @@ export default {
 }
 
 .is-complete {
-	text-decoration: like-through;
+	text-decoration: line-through;
 }
 
 .del {
