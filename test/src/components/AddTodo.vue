@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 
 export default {
 	name: "AddTodo",
@@ -23,7 +23,7 @@ export default {
 			e.preventDefault();
 			// construct our todo item object
 			const newTodo = {
-				id: uuidv4(),
+				// id: uuidv4(),
 				title: this.title,
 				completed: false
 			}
