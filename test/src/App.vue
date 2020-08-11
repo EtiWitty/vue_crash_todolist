@@ -27,8 +27,11 @@ export default {
   },
   methods: {
     deleteTodo(id) {
-      this.todos = this.todos.filter(todo => todo.id !== id)
+      axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+        .then(res => this.todos = this.todos.filter(todo => todo.id !== id))
+        .catch(err => console.log(err));
     },
+
     addTodo(newTodo) {
       const { title, completed } = newTodo;
       axios.post('https://jsonplaceholder.typicode.com/todos', {
@@ -40,6 +43,7 @@ export default {
       
     }
   },
+  
     // this is similar to componentDidMount in react!
     created() {
       axios.get('https://jsonplaceholder.typicode.com/todos?_limit=5')
